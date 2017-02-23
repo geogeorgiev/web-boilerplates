@@ -1,0 +1,16 @@
+php_memory_limit: "256M"
+php_max_execution_time: "90"
+php_upload_max_filesize: "256M"
+
+ 
+# Drupal specific
+session_cache_limiter: "nocache"
+session_auto_start: "0"
+php_expose_php: "off"
+allow_url_fopen: "off"
+magic_quotes_gpc: "off"
+register_globals: "off"
+php_display_errors: "off"
+
+
+ 

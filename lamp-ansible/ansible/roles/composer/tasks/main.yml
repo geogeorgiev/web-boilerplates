@@ -1,0 +1,9 @@
+---
+- name: Install Composer
+  sudo: yes
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer creates=/usr/local/bin/composer
+
+- name: Self-update Composer
+  sudo: yes
+  shell: /usr/local/bin/composer self-update
+

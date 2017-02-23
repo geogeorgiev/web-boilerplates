@@ -1,0 +1,24 @@
+{
+	"folders":
+	[
+		{
+			"path": "./",
+            "name": "new",
+            "file_exclude_patterns":[
+                "._*",
+                "*.ico",
+                "*.swf"
+
+                
+            ],
+            "folder_exclude_patterns": [
+                "assets",
+                "img",
+                "*.sass-cache",
+                "css",
+                "docs",
+                "node_modules"
+            ]
+        }
+	]
+}

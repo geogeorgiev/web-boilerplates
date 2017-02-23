@@ -1,0 +1,30 @@
+---
+env_name: staging
+ansible_ssh_user: "vagrant"
+ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
+
+servers:
+  - hostname: stageserver
+    ip: "192.168.10.11"
+    memory: "2048"
+    cpus: "1"
+    authorize: "~/.ssh/id_rsa.pub"
+    keys:
+      - "~/.ssh/id_rsa"
+
+sites:
+  - name: vonneumann
+    servername: stage.vnm.io
+    documentroot: /var/www/vonneumann
+    alias: stage
+    hostname: stageserver  
+    git: git@bitbucket.org:gooshan/drupal-vonneumann.git
+
+databases:
+  - name: vonneumann
+    user: vonneumann
+    password: secret
+    type: mysql
+    host: '%'
+    hostname: stageserver
+    priv: "*.*:ALL" 

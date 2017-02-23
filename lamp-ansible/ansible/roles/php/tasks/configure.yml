@@ -1,0 +1,53 @@
+---
+- name: Ensure configuration directories exist.
+  file:
+    path: "{{ item }}"
+    state: directory
+    follow: true
+  with_items:
+    - "{{ php_conf_path }}"
+    - "{{ php_extension_conf_path }}"
+
+- name: Place PHP configuration file in place.
+  template:
+    src: php.ini.j2
+    dest: "{{ php_conf_path }}/php.ini"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart webserver
+  when: php_use_managed_ini
+
+- name: Place OpCache configuration file in place.
+  template:
+    src: opcache.ini.j2
+    dest: "{{ php_extension_conf_path }}/{{ php_opcache_conf_filename }}"
+    owner: root
+    group: root
+    force: yes
+    mode: 0644
+  when: php_opcache_enable
+  notify: restart webserver
+
+- name: Place Xdebug configuration file in place.
+  template:
+    src: xdebug.ini.j2
+    dest: "{{ php_extension_conf_path }}/{{ php_xdebug_conf_filename }}"
+    owner: root
+    group: root
+    force: yes
+    mode: 0644
+  notify: restart webserver
+
+- name: Creates Xdebug log directory
+  file: path=/var/log/xdebug state=directory
+
+- name: Creates Xdebug profiler directory
+  file: path=/var/log/xdebug/profiler state=directory
+
+- name: Ensure php-fpm is started and enabled at boot (if configured).
+  service:
+    name: "{{ php_fpm_daemon }}"
+    state: started
+    enabled: yes
+  when: php_enable_php_fpm

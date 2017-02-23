@@ -1,0 +1,22 @@
+# Login from command line
+mysql -u{username} -p 
+
+### Inside mysql console
+
+## Database
+# View databases
+show databases;
+# Create DB
+CREATE DATABASE IF NOT EXISTS 'database_name';
+
+## Users
+# View users
+SELECT User FROM mysql.user;
+
+# Create user and grant privileges
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+
+# Grant privileges to user
+GRANT ALL PRIVILEGES ON * . * TO 'user'@'localhost';
+FLUSH PRIVILEGES;
+

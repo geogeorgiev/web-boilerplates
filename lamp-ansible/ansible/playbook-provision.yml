@@ -1,0 +1,14 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+   # document_root: /var/www/html
+    #conf_dir: ../
+  pre_tasks:
+    - name: update apt cache
+      apt: update_cache=yes
+  roles:
+    - { role: apache, tags: apache }
+    - { role: mysql, tags: mysql }
+    - { role: php, tags: php }
+    - { role: composer, tags: composer }

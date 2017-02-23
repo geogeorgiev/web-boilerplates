@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars:
+    conf_dir: ../
+  tasks:
+    - debug: msg="reading from {{ env_name }}"
+    - name: Test conditionals
+      command: echo hola
+      when: env_name == 'staging'
+    

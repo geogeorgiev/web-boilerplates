@@ -1,0 +1,51 @@
+---
+env_name: dev
+ansible_ssh_user: "vagrant"
+ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
+php_xdebug_enabled_in_ini: true
+
+sites:
+  - name: vnm-drupal
+    servername: drupal.vnm.io
+    documentroot: /home/vagrant/Code/vonneumann/drupal/public
+    hostname: devserver 
+  - name: local-web
+    servername: local.web
+    documentroot: /home/vagrant/Code/playground
+    hostname: devserver 
+  - name: vnm-jekyll
+    servername: jekyll.vnm.io
+    documentroot: /home/vagrant/Code/vonneumann/jekyll/public/
+    hostname: devserver 
+  - name: ccs-drupal
+    servername: drupal.cre8ivecells.com
+    documentroot: /home/vagrant/Code/ccs/public/
+    hostname: devserver 
+  - name: taskalito-lara
+    servername: laravel.taskalito.com
+    documentroot: /home/vagrant/Code/taskalito/public/
+    hostname: devserver 
+
+databases:
+  - name: vonneumann
+    user: vonneumann
+    password: ajvj9*3SAfk2123jaZ!
+    type: mysql
+    host: '%'
+    priv: "*.*:ALL" 
+    hostname: devserver
+  - name: luminous
+    user: vonneumann
+    password: ajvj9*3SAfk2123jaZ!
+    type: mysql
+    host: '%'
+    priv: "*.*:ALL" 
+    hostname: devserver
+  - name: ccs
+    user: vonneumann
+    password: ajvj9*3SAfk2123jaZ!
+    type: mysql
+    host: '%'
+    priv: "*.*:ALL" 
+    hostname: devserver
+

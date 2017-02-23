@@ -1,0 +1,18 @@
+---
+- hosts: all
+  pre_tasks:
+    - name: Set home_dir
+      set_fact: home_dir={{ ansible_env.HOME }}
+
+    - name: Create dir
+      file: "path={{ home_dir }}/Code/{{ item.name }} state=directory"
+      with_items: "{{ sites }}"
+
+    - name: Link to apache folders
+      sudo: true
+      file: "src={{ home_dir }}/Code/{{ item.name }} dest={{ item.documentroot }} state=link"
+      with_items: "{{ sites }}"
+  roles: 
+    - { role: repo, tags: repo, when: env_name == 'production' or env_name =='staging'}
+    - { role: composer, tags: composer }
+    - { role: import_data, tags: import_data }

@@ -1,0 +1,11 @@
+---
+mysql_root_password: ajvj9*3SAfk2123jaZ!
+
+mysql_users: "{{ databases }}"
+
+# Databases.
+mysql_databases: "{{ databases }}"
+# Full example:
+# mysql_databases:
+#   - { name: example, collation: utf8_general_ci, encoding: utf8, replicate: 1 }
+

@@ -1,0 +1,30 @@
+---
+env_name: production
+ansible_ssh_user: "root"
+ansible_ssh_private_key_file: "~/.ssh/id_rsa"
+
+servers:
+  - hostname: dv1
+    ip: "78.142.49.3"
+
+sites:
+  - name: vonneumann
+    servername: dv1.vnm.io
+    documentroot: /var/html/www/small_git
+    hostname: dv1 
+    git: git@bitbucket.org:gooshan/some_small_repo.git
+
+  - name: vonneumann
+    servername: www.vnm.io
+    documentroot: /var/html/www/vonneumann
+    hostname: dv1 
+    git: git@bitbucket.org:gooshan/some_small_repo.git
+
+databases:
+  - name: vonneumann
+    user: droovy
+    password: 1jsJ2*D2au@sP
+    type: mysql
+    host: '%'
+    priv: "*.*:ALL" 
+    hostname: dv1

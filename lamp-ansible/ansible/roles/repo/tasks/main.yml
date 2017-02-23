@@ -1,0 +1,15 @@
+---
+- name: Install git
+  sudo: true
+  apt: name="git" state="present"
+
+- name: Ensure Bitbucket.com is a known host
+  lineinfile:
+    dest: ~/.ssh/known_hosts
+    create: yes
+    state: present
+    line: "{{ lookup('pipe', 'ssh-keyscan -t rsa bitbucket.com') }}"
+
+- name: Pull code 
+  git: "repo={{ item.git }} dest={{ ansible_env.HOME }}/Code/{{ item.name }} accept_hostkey=true"
+  with_items: "{{ sites }}"

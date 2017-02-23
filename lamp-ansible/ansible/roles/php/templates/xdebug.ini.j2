@@ -1,0 +1,19 @@
+{% if php_xdebug_enabled_in_ini %}
+zend_extension=xdebug.so
+{% endif %}
+
+
+xdebug.show_exception_trace= {{ php_xdebug_show_exception_trace }}
+xdebug.collect_param={{ php_xdebug_collect_params }}
+xdebug.max_nesting_level={{ php_xdebug_max_nesting_level }}
+
+xdebug.profiler_enable=1
+xdebug.profiler_output_dir="/var/log/xdebug"
+xdebug.remote_enable=1
+xdebug.remote_handler=dbgp
+xdebug.remote_mode=req
+xdebug.remote_host=127.0.0.1
+xdebug.remote_port=9000
+xdebug.remote_log="/var/log/xdebug/xdebug.log"
+
+;xdebug.idekey = somekey

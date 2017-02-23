@@ -1,0 +1,11 @@
+@import 'normalize.css';
+
+@import 'base/base';
+@import 'layout/layout';
+@import 'components/components';
+@import 'theme/default'
+@import 'others/others';
+
+body {
+	background-color: khaki;
+}

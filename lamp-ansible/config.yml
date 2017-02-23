@@ -1,0 +1,34 @@
+---
+env: dev
+
+servers:
+  - hostname: local-web
+    ip: "192.168.10.22"
+    memory: "2048"
+    cpus: "2"
+    authorize: "~/.ssh/id_rsa.pub"
+    keys:
+      - "~/.ssh/id_rsa"
+    shared_folders:
+      - map: /Users/gooshan/Documents/projects/taskalito/dev/web/laravel/
+        to: /home/vagrant/Code/taskalito/
+        type: "nfs"
+      - map: /Users/gooshan/Documents/projects/vonneumann/dev/web/
+        to: /home/vagrant/Code/vonneumann/
+        type: "nfs" 
+      - map: /Users/gooshan/Documents/projects/playground/
+        to: /home/vagrant/Code/playground/
+        type: "nfs"
+      - map: /Users/gooshan/Documents/projects/ccs/dev/web/ccs4/drupal/
+        to: /home/vagrant/Code/ccs/
+        type: "nfs"
+    ports:
+      - send: 8002
+        to: 80
+      - send: 4432
+        to: 443
+      - send: 33062
+        to: 3306
+      - send: 54322
+        to: 5432
+

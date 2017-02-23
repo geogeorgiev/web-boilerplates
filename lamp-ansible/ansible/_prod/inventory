@@ -1,0 +1,7 @@
+[webservers]
+dv1 ansible_ssh_host=78.142.49.3 ansible_sudo_pass=*DevApp* ansible_ssh_user=gooshan
+
+[servers:children]
+webservers
+
+

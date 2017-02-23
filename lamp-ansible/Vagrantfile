@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+require 'yaml'
+
+VAGRANTFILE_API_VERSION = "2"
+settingsPath = "config.yml"
+
+require File.expand_path('VMConfigurator.rb')
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+ 
+  settings = YAML::load(File.read(settingsPath))
+ 
+  # Virtual Machine (Instance) Configuration class is run
+  if File.exists? settingsPath then
+    settings['servers'].each do |server|
+      config.vm.define server['hostname'] do |host|
+        VMConfigurator.run(host, server)
+      end
+    end
+  end
+   
+      
+
+end
+ 
+ 
+
+
+ 
+ 
+
